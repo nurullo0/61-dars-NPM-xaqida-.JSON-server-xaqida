@@ -1,0 +1,24 @@
+{
+  "name": "npminstall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "bootstrap": "^5.1.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nurullo0/61-dars-NPM-xaqida-.JSON-server-xaqida.git"
+  },
+  "author": "Nurullo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nurullo0/61-dars-NPM-xaqida-.JSON-server-xaqida/issues"
+  },
+  "homepage": "https://github.com/nurullo0/61-dars-NPM-xaqida-.JSON-server-xaqida#readme"
+}
