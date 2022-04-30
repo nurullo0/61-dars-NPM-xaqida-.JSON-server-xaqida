@@ -384,11 +384,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   forms.forEach(item => {
-    postData(item)
+    bindPostData(item)
   })
 
+  const postData = async (url, data) => {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: data
+    })
+    return await res.json()
+  }
 
-  function postData(form) {
+  function bindPostData(form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -409,25 +419,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // const json = JSON.stringify(object)
 
-      fetch('server.php', {
-        method: 'POST',
-        headers:{
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(object),
-      }).then(data => data.text())
-      .then(data => {
-        console.log(data);
-        showThanksModal(message.success)
-        statusMessage.remove()
-      })
-      .catch(() => {
-        showThanksModal(message.failure)
-      })
-      .finally(() => {
-        form.reset()
-      })
-      
+      postData('http://localhost:3000/menu', JSON.stringify(object))
+        .then(data => {
+          console.log(data);
+          showThanksModal(message.success)
+          statusMessage.remove()
+        })
+        .catch(() => {
+          showThanksModal(message.failure)
+        })
+        .finally(() => {
+          form.reset()
+        })
+
       // request.addEventListener('load', () => {
       //   if (request.status === 200) {
       //     console.log(request.response);
@@ -464,12 +468,5 @@ document.addEventListener('DOMContentLoaded', () => {
       modalCloses()
     }, 4000)
   }
-
-
-fetch('http://localhost:3000/menu')
-  .then(data => data.json())
-  .then(res => console.log(res))
-
-
 
 })
